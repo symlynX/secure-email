@@ -128,7 +128,7 @@ Second, even if the application is loaded from a trusted third party, web browse
 
 Third, developers of web-based secure email face an additional challenge when dealing with offline data or data caching. Modern HTML5 apps typically store a lot of data locally on the user's device using the localStorage facility. Currently, however, no browser stores this encrypted. A secure web-based email application must either choose to not support any local storage, or develop a scheme for individually encrypting each object put in localStorage, a process which is very inefficient. Even storing keys temporarily in short lived session storage is problematic, since these can be easily read from disk later.
 
-Some of the new mail systems avoid all of the problems above by offering their web interface over a little web server installed on the same computer or device the web browser is running on. In that case all the sensitive data can stay on the native application even if the user interface seems to be a web site.
+Some of the new mail systems and mail clients avoid all of the problems above by offering their web interface over a little web server installed on the same computer or device the web browser is running on. In that case all the sensitive data can stay on the native application even if the user interface seems to be a web site. Those are not considered actual "web mail" in this document and therefore appear in following chapters.
 
 <a name="mega"></a>Mega
 -----------------------------------------------------------
@@ -286,7 +286,7 @@ Parley is a desktop mail client with a UI written using HTML5 and Javascript, wi
 * Written in: Python, Javascript
 * Source code: https://github.com/blackchair/parley
 * Design documentation: https://parley.co/#how-it-works
-* License: BSD
+* License: BSD (with proprietary server-side dependencies)
 * Platforms: Windows, Mac, Linux (with Android and iOS planned).
 
 <a name="self-hosted-email"></a>Self-Hosted Email
@@ -299,12 +299,12 @@ In the United States, much of the interest in self-hosted email is driven by the
 Unfortunately, it is not so simple. There are some major challenges to putting email servers in everyone's home:
 
 * **Delegated reputation**: The current email infrastructure is essentially a system of delegated reputation. In order to be able to send mail to most providers and not have a large percentage of it marked as Spam, a service provider must gradually build up a good reputation. Users are able to send mail because their provider has cultivated this reputation and maintained it by closing abusive accounts. It is certainly possible to run an email provider with a single user, but it is much harder to build up a good reputation. Also, many email providers block all relay attempts from IP addresses that have been flagged as "home" addresses, on the (probable) assumption that the message is coming from a virus and not a legitimate email server.
-* **Servers are on a hostile network**: Because a server needs to have open ports that are publicly accessible from the internet at all times, running one is much trickier than a simple desktop computer. It is much more critical to make sure security upgrades are applied in a timely manner, and that you are able to respond to external attacks, such as "Spam Bombs". Any publicly addressable IP that is put on the open internet will be continually probed for vulnerabilities. Self-hosting will probably work great for a protocol like Pond, where there are strict restrictions on who may deliver incoming messages. Email, however, is a protocol that is wide open and prone to abuse.
+* **Servers are on a hostile network**: Because a server needs to have open ports that are publicly accessible from the internet at all times, running one is much trickier than a simple desktop computer. It is much more critical to make sure security upgrades are applied in a timely manner, and that you are able to respond to external attacks, such as "Spam Bombs". Any publicly addressable IP that is put on the open internet will be continually probed for vulnerabilities. Email is a protocol that is wide open and prone to abuse.
 * **Sysadmins are not robots**: No one has yet figured out how to make self-healing servers that don't require a skilled sysadmin to keep them healthy. Once someone does, a lot of sysadmins will be out of work, but they are presently not very worried. There are many things that commonly go wrong with servers, such as upgrades failing, drives filling up, daemons crashing, memory leaks, hardware failures, and so on.
 * **Does not address the important problems**: Moving the physical location of a device does nothing to solve the hard problems associated with easy-to-use email security (such as data availability and key validation). Some of the approaches to these problems rely on service provider infrastructure that would be infeasible to self host.
 * **DNS is hard**: One of the important security problems with traditional email is the vulnerability MX DNS records. Doing DNS correctly is hard, and not something that can be expected of the common user.
 
-Self-hosted email is an intriguing "legal hack", albeit one that faces many technical challenges.
+All of the above problems however do not apply for public-key routing mail systems such as secushare, Retroshare, Briar, I2PBote and Pond. The latter actually needs a server to function, so a self-hosted home server is very recommendable. The others can be operated from all kinds of devices including home server boxes.
 
 <a name="self-hosted-dark-mail"></a>Dark Mail Alliance
 -----------------------------------------------------------
