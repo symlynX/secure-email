@@ -128,6 +128,8 @@ Second, even if the application is loaded from a trusted third party, web browse
 
 Third, developers of web-based secure email face an additional challenge when dealing with offline data or data caching. Modern HTML5 apps typically store a lot of data locally on the user's device using the localStorage facility. Currently, however, no browser stores this encrypted. A secure web-based email application must either choose to not support any local storage, or develop a scheme for individually encrypting each object put in localStorage, a process which is very inefficient. Even storing keys temporarily in short lived session storage is problematic, since these can be easily read from disk later.
 
+Some of the new mail systems avoid all of the problems above by offering their web interface over a little web server installed on the same computer or device the web browser is running on. In that case all the sensitive data can stay on the native application even if the user interface seems to be a web site.
+
 <a name="mega"></a>Mega
 -----------------------------------------------------------
 
