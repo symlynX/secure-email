@@ -158,7 +158,7 @@ Verdict: oil of snake
 
 [scramble.io](https://scramble.io)
 
-Scramble is a OpenPGP email application that can be loaded from a website (with plans to add app store support). Additionally, you can sign up for email service from scramble.io.
+Scramble is an OpenPGP email application that can be loaded from a website (with plans to add app store support). Additionally, you can sign up for email service from scramble.io.
 
 **Keys:** Private keys are generated in the browser app, encrypted with the user's passphrase, and then stored on the server. The server never sees the user's passphrase (password is hashed using scrypt before sent to the server during account creation and authentication). The master storage secret (symmetric key) used to encrypt keys is stored in the browser's sessionStorage, which is erased when the user logs out. Keys are validated using notaries.
 
@@ -199,7 +199,7 @@ Mailvelope is a browser extension that allows you to use OpenPGP email with trad
 
 **Application:** When the extension detects you have opened a web page from a supported web-mail provider such as Gmail, it offers the user the opportunity to encrypt what you type in the compose window and decrypt messages you receive.
 
-**Limitations:** Because of an inherent limitation in the way Mailvelope can interface with web-mail, it is not able to send OpenPGP/MIME (although it can read it fine). As mentioned elsewhere, browser storage is not a particular ideal place to be storing keys. When a web-mail provider changes their UI (or API if they happen to have one), the extension must be updated to handle the new format.
+**Limitations:** Because of an inherent limitation in the way Mailvelope can interface with web-mail, it is not able to send OpenPGP/MIME (although it can read it fine). As mentioned before, browser storage is not a particular ideal place to be storing keys. When a web-mail provider changes their UI (or API if they happen to have one), the extension must be updated to handle the new format.
 
 * Contact: info@mailvelope.com
 * Written in: Javascript
@@ -215,8 +215,8 @@ An email client, or MUA (Mail User Agent), provides a user interface to access e
 
 There are two primary advantages to the mail client approach:
 
-1. Existing accounts: By using a custom secure mail client, a user can continue to use their existing email accounts.
-1. Tailored UI: A custom client has the potential to rethink the email user experience in order to better convey security related details to the user.
+1. Existing accounts: By using a custom secure mail client, a user can continue to use their existing email accounts, although that isn't really an advantage since a key discovery and validation procedure needs to be made for each interesting contact which is just as cumbersome as adding that person on a completely different software. Also, allowing contacts to send you unencrypted messages can harm your privacy.
+1. Tailored UI: A custom client has the potential to rethink the email user experience in order to better convey security related details to the user - whithin the limits imposed by the traditional email architecture (having to convey the importance of addresses, for example).
 
 The mail client approach, however, also has several disadvantages:
 
