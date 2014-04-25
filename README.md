@@ -405,7 +405,7 @@ LEAP includes both a client application and turn-key system to automate the proc
 
 **Application:** The client application works with any existing MUA by exposing a local IMAP/SMTP server that the MUA can connect to. There is a Thunderbird extension to automate configuration of the account in Thunderbird. The client application communicates with the service provider using a custom protocol for synchronizing encrypted databases. The application is a very small C program that launches the Python code. The user interface is written using Qt.
 
-**Limitations:** In the current implementation, security properties of forward secrecy and metadata production are not end-to-end. Instead, the client relies on the service provider to ensure these properties. This limitation is due to some inherent limitations in the existing protocols for secure email. As with many of the other projects, LEAP's plan is to invisibly upgrade to a post-email protocol when possible in order to overcome these limitations.
+**Limitations:** In the current implementation, security properties of forward secrecy and metadata protection are not end-to-end. Instead, the client relies on the service provider to ensure these properties. This limitation is due to some inherent limitations in the existing protocols for secure email. As with many of the other projects, LEAP's plan is to invisibly upgrade to a post-email protocol when possible in order to overcome these limitations.
 
 * Written in: Python
 * Source code: https://leap.se/source
@@ -420,7 +420,22 @@ There are several projects to create alternatives to email that are more secure 
 These projects share some common advantages:
 
 1. **Trust no one:** These projects share an approach that treats the network, and all parties on the network, as potentially hostile and not to be trusted. With this approach, a user's security can only be betrayed if their own device is compromised or the software is flawed or tampered with, but the user is protected from attacks against any service provider (because there typically is not one).
-1. **Fingerprint as identifier:** All these projects also use the fingerprint of the user's public key as the unique routing identifier for a user, allowing for decentralized and unique names. This neatly solves the problem of validating public keys, because every identifier basically *is* a key, so there is no need to establish a mapping from an identifier to a key.
+1. **Public-Key as the Identifier:** All these projects also use the user's public key as the unique routing identifier for a user, allowing for decentralized and unique names. This neatly solves the problem of validating public keys, because every identifier basically *is* a key, so there is no need to establish a mapping from an identifier to a key.
+
+
+
+The humbug that follows is so incredibly biased and unscientific
+that I need to make a pause to even be able to continue from here.
+It is evident that Elijah has no clue how today's public-key based
+systems actually function, how they have successfully addressed
+Sybil attacks and further on. This is pretty annoying.
+
+Do not consider anything that follows of actual relevance, please.
+Thank you.
+
+--lynX
+
+
 
 Except for Pond, all these alternatives take a pure peer-to-peer approach. As such, they face particular challenges:
 
