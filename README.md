@@ -9,6 +9,7 @@ Contents:
   1. [Data Availability](#data-availability)
   1. [Secure Authentication](#secure-authentication)
   1. [Scalability](#scalability)
+  1. [Social Usability](#social-usability)
 1. [Web Mail](#web-mail)
   1. [Mega](#mega)
   1. [PrivateSky](#privatesky)
@@ -104,6 +105,12 @@ No consensus or standard has yet emerged, although SRP has been around a while.
 Limitations in scalability are traditionally accepted in e-mail. Should you need to send a message to a mailing list of ten thousands of users, it is accepted that your server will be busy all day doing just that. Should you instead own an account at Google Mail and happen to have a mailing list of a million other Google users, then it is accepted that the message will be distributed in a question of seconds.
 
 This discrepancy is due to the federated architecture of SMTP known not to scale very well while a mail system which is fully internal to a commercial cloud can make use of advanced publish/subscribe distribution trees. Some advanced email replacements also take this aspect in consideration and try to improve on the scalability of email by introducing anonymized distributed publish/subscribe strategies. Frequently they also include the capability of delivering binary encoded data natively, thus reducing in encoding overhead compared to email's MIME formats.
+
+<a name="social-usability"></a>Social Usability
+
+Email is currently losing millions of users to social network offerings such as Facebook, simply because it is fully integrated into a social experience, easier to handle (requires no addresses), visually more appealing (it shows the communication partner's photograph), less asynchronous (if both are online, it turns into a real-time chat) and generally less formal.
+
+Ignoring these large usability improvements provided by the integration into a social experience could result in new mail systems failing to reach for the large audience of people who don't put security first. Some projects address this by integrating the new mail experience in an advanced social networking experience, also allowing to simplify the adoption of public keys from the list of a friend's friends as an alternative to more cumbersome methods of key authentication.
 
 
 <a name="web-mail"></a>Web Mail
