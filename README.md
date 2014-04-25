@@ -352,11 +352,11 @@ per [olimex](https://www.olimex.com/wiki/A10-OLinuXino-LIME).
 
 The "infrastructure" projects give a service provider the opportunity to offer secure email accounts to end-users. By modifying how both email clients and email servers work, these projects have the potential to deploy greater security measures than are possible with a client-only approach. For example:
 
-* Encrypted relay: A secure email provider is able to support, and enforce, encrypted transport when relaying mail to other providers. This is an important mechanism for reducing likelihood of surveillance of metadata (which is otherwise not protected by OpenPGP client-side encryption of message contents).
+* Encrypted relay: A secure email provider is able to support, and enforce, encrypted transport when relaying mail to other providers. This is a mechanism for reducing likelihood of surveillance of metadata (which is otherwise not protected by OpenPGP client-side encryption of message contents), if the counterparts of your communication aren't using offerings affected by the PRISM surveillance program, possibly including cheap VPS hosted servers.
 * Easier key management: A secure email provider can endorse the public keys of its users, and provide assistance to various schemes for automatic validation. Additionally, a secure email provider, coupled with a custom client, can make it easy to securely manage and back up the essential private keys which are otherwise cumbersome for most users to manage.
-* Invisible upgrade to better protocols: A secure email provider has the potential to support multiple protocols bound to a single user@domain address, allowing automatic and invisible upgrades to more secure post-email protocols when both parties detect the capability.
-* A return to federation: The recent concentration of email to a few giant providers greatly reduces the health and resiliency of email as an open protocol, since now only a few players essentially monopolize the medium. Projects that seek to make it easier to offer secure email as a service have the potential to reverse this trend.
-* Secure DNS: A secure provider can support DNSSEC and DANE, while most other email providers are unlikely to anytime soon. This is very important, because it is easy to hijack the MX records of a domain without DNSSEC.
+* Invisible upgrade to better protocols: A secure email provider has the potential to support multiple protocols bound to a single user, allowing automatic and invisible upgrades to more secure post-email protocols when both parties detect the capability.
+* A hope for federation: The recent concentration of email to a few giant providers greatly reduces the health and resiliency of email as an open protocol, since now only a few players essentially monopolize the medium. Projects that seek to make it easier to offer secure email as a service have the potential to reverse this trend.
+* Better DNS: A secure provider can support DNSSEC and DANE, while most other email providers are unlikely to anytime soon. This is important, if you really insist on using traditional email, because it is easy to hijack the MX records of a domain without DNSSEC.
 * Minimal data retention: A service provider that follows "best practices" will choose to retain less personally identifiable information on their users, such as their home IP addresses.
 
 The goal of both projects in this category is to build systems where the service provider is untrusted and cannot compromise the security of its users.
@@ -365,6 +365,7 @@ Despite the potential of this approach, there are several unknown factors that m
 
 * In order to benefit from a more secure provider, a user will need to switch their email account and email address, a very high barrier to adoption.
 * Where once there were many ISPs that offered email service, it is no longer clear if there is either the demand to sustain many email providers or the supply of providers interested in offering email as a service.
+* Given that more radical new mail systems solve all of the above problems, it may be a waste of time to stick to the old traditions.
 * Users must download and install a custom application.
 
 <a name="dark-mail-alliance"></a>Dark Mail Alliance
