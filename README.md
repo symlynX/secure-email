@@ -8,6 +8,7 @@ Contents:
   1. [Forward Secrecy](#forward-secrecy)
   1. [Data Availability](#data-availability)
   1. [Secure Authentication](#secure-authentication)
+  1. [Scalability](#scalability)
 1. [Web Mail](#web-mail)
   1. [Mega](#mega)
   1. [PrivateSky](#privatesky)
@@ -96,6 +97,14 @@ For those projects that make use of a service provider, one of the key problems 
 * Sign a challenge from the server with the user's private key. This has the advantage of being nearly impossible to brute force attack, but is vulnerable to impostor server providers and requires that the user's device has the private key.
 
 No consensus or standard has yet emerged, although SRP has been around a while.
+
+<a name="scalability"></a>Scalability
+-----------------------------------------------------------
+
+Limitations in scalability are traditionally accepted in e-mail. Should you need to send a message to a mailing list of ten thousands of users, it is accepted that your server will be busy all day doing just that. Should you instead own an account at Google Mail and happen to have a mailing list of a million other Google users, then it is accepted that the message will be distributed in a question of seconds.
+
+This discrepancy is due to the federated architecture of SMTP known not to scale very well while a mail system which is fully internal to a commercial cloud can make use of advanced publish/subscribe distribution trees. Some advanced email replacements also take this aspect in consideration and try to improve on the scalability of email by introducing anonymized distributed publish/subscribe strategies. Frequently they also include the capability of delivering binary encoded data natively, thus reducing in encoding overhead compared to email's MIME formats.
+
 
 <a name="web-mail"></a>Web Mail
 ===========================================================
