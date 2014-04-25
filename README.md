@@ -107,6 +107,7 @@ Limitations in scalability are traditionally accepted in e-mail. Should you need
 This discrepancy is due to the federated architecture of SMTP known not to scale very well while a mail system which is fully internal to a commercial cloud can make use of advanced publish/subscribe distribution trees. Some advanced email replacements also take this aspect in consideration and try to improve on the scalability of email by introducing anonymized distributed publish/subscribe strategies. Frequently they also include the capability of delivering binary encoded data natively, thus reducing in encoding overhead compared to email's MIME formats.
 
 <a name="social-usability"></a>Social Usability
+-----------------------------------------------------------
 
 Email is currently losing millions of users to social network offerings such as Facebook, simply because it is fully integrated into a social experience, easier to handle (requires no addresses), visually more appealing (it shows the communication partner's photograph), less asynchronous (if both are online, it turns into a real-time chat) and generally less formal.
 
