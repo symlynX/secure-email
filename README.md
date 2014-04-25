@@ -4,7 +4,7 @@ Contents:
 
 1. [Common Problems](#common-problems)
   1. [Key Management](#key-management)
-  1. [Metadata Protection](#metadata-protection)
+  1. [Protection of Transaction Data and the Social Graph](#metadata-protection)
   1. [Forward Secrecy](#forward-secrecy)
   1. [Data Availability](#data-availability)
   1. [Secure Authentication](#secure-authentication)
@@ -72,18 +72,18 @@ All schemes that do not combine metadata protection with public-key based routin
 <a name="forward-secrecy"></a>Forward Secrecy
 -----------------------------------------------------------
 
-Forward secrecy is a security property that prevents an attacker from saving messages today and then later decrypting these messages once they have captured the user's private key. Without forward secrecy, an attacker might also be able to capture messages today and simply wait for computers to become powerful enough to crack the encryption by brute force. Traditional email encryption offers no forward secrecy.
+Forward secrecy is a security property that prevents an attacker from saving messages today and then later decrypting these messages once they have captured the user's private key. Traditional email encryption offers no forward secrecy.
 
-All methods for forward secrecy involve a process where two parties negotiate an ephemeral key that is used for a short period of time to secure their communication. In many cases, the ephemeral key is generated anew for every single message. Traditional schemes for forward secrecy are incompatible with the asynchronous nature of email communication, since with email you still need to be able to send someone a message even if they are not online and ephemeral key generation requires a back and forth exchange between both parties.
+All methods for forward secrecy involve a process where two parties negotiate an ephemeral key that is used for a short period of time to secure their communication. In many cases, the ephemeral key is advanced or generated anew for every single message. Ephemeral key generation requires a back and forth exchange between both parties to get started, which may be impractical at first if they aren't online at the same time. Once started the problem no longer exists.
 
-There are several new experimental (and tricky) protocols that attempt to achieve both forward secrecy and support for asynchronous communication, but none have yet emerged as a standard. Another possible approach is to use traditional encryption with no support for forward secrecy but instead rely on a scheme for automatic key discovery and validation in order to frequently rotate keys. This way, a user could throw away their private key every few days, achieving a very crude form of forward secrecy.
+Another possible approach is to use traditional encryption with no support for forward secrecy but instead rely on a scheme for automatic key discovery and validation in order to frequently rotate keys. This way, a user could throw away their private key every few days, achieving a very crude form of forward secrecy.
 
 <a name="data-availability"></a>Data Availability
 -----------------------------------------------------------
 
 Users today demand data availability: they want to be able to access their messages and send messages from any device they choose, wherever they choose, and whenever they choose. Most importantly, they don't want the loss of any particular device to result in a loss of all their data. For insecure communication, achieving data availability is dead simple: simply store everything in the cloud. For secure communication, however, we have no proven solutions to this problem. As noted above, the key management problem is also really a data availability problem.
 
-Most of the projects here have postponed dealing with the data availability problem. A few have used IMAP to synchronize data or developed their own secure synchronization protocol.
+Most of the projects here have postponed dealing with the data availability problem. A few have used IMAP to synchronize data or developed their own secure synchronization protocol. secushare uses anonymized distribution trees over relay nodes, thus enabling all devices to access the data safely from a socially powered kind of cloud.
 
 <a name="secure-authentication"></a>Secure Authentication
 -----------------------------------------------------------
