@@ -50,7 +50,7 @@ Contents:
 <a name="tldr"></a>TL;DR: Executive Summary
 ===========================================================
 
-Traditional email faces unsurmountable problems concerning trustworthiness, usability and protection of social information on who is participating in communications. Even the best projects in the field accept dangerous trade-offs such as 1. allowing for man in the middle attacks at the moment of first use, 2. allowing people who disregard your privacy requirements to send you unencrypted messages, 3. allowing observing entities to map out the identities and the intensity of social interactions, 4. requiring a complete overhaul of the involved protocols if forward secrecy is to be achieved and 5. to tackle incongruencies in the architecture with user interface design, as if that hadn't been tried in the previous twenty years. Also, none of the improvements tackle the problem that people are flocking away to Facebook Mail, a cloud- and social-network-based alternative that offers 6. better usability and 7. user-expectation conformant scalability.
+Traditional email faces unsurmountable problems concerning trustworthiness, usability and protection of social information on who is participating in communications when it comes to provide end-to-end confidentiality. Even the best projects in the field accept dangerous trade-offs such as 1. allowing for man in the middle attacks at the moment of first use, 2. allowing people who disregard your privacy requirements to send you unencrypted messages, 3. allowing observing entities to map out the identities and the intensity of social interactions, 4. requiring a complete overhaul of the involved protocols if forward secrecy is to be achieved and 5. to tackle incongruencies in the architecture with user interface design, as if that hadn't been tried in the previous twenty years. Also, none of the improvements tackle the problem that people are flocking away to Facebook Mail, a cloud- and social-network-based alternative that offers 6. better usability, 7. user-expectation conformant scalability and 8. freedom from Spam and correlated nuisances.
 
 It is not surprising that projects that started over a decade ago re-inventing the foundation of the Internet based on public-key routing and distributed hashtable technology, have in the meantime developed to a degree of solidity that they are presenting a true alternative way for many Internet applications including email. These technologies solve several of the problems of traditional email by design, other are in the process of being resolved, but since the science community has made very in-depth research on the issues involved with public-key based routing, the methods are known and already implemented in some projects.
 
@@ -429,29 +429,32 @@ LEAP includes both a client application and turn-key system to automate the proc
 <a name="public-key-routing"></a>Public-Key Routing Systems
 ===========================================================
 
-Out of a tradition of peer-to-peer systems a new bread of Internet routing technologies is emerging which has quite interesting effects regarding possible solutions for email.
+Out of a tradition of peer-to-peer systems a new breed of Internet routing technologies is emerging which has quite interesting effects regarding possible solutions for email.
 These technologies share some essential advantages:
 
-1. **Public key as the identifier:** All these projects also use the user's public key as the unique routing identifier for a user, allowing for decentralized and unique names. This neatly solves the problem of validating public keys, because every identifier basically *is* a key, so there is no need to establish a mapping from an identifier to a key.
+1. **Public key as the identifier:** All of these projects use the user's public key as the unique routing identifier for a user, allowing for decentralized and unique names. This neatly solves the problem of validating public keys, because every identifier *is* the key, so there is no need to establish a mapping.
 1. **Ease of use:** By having the cryptography an essential part of how the Internet works, applications hardly need to deal with it any longer. All communication is always encrypted to the recipients of the messages, allowing for dramatically simplified user interfaces that anyone can learn to use.
 1. **Impossible to use without encryption:** Some researchers think the most awful problem about traditional email is that as long as it can accept unencrypted mail, people will send unencrypted mail and expose most private aspects of the recipient's life against her will. Public-key based routing systems make such profoundly human behaviour impossible and thus close the biggest of all loopholes in Internet technology.
 1. **No account management:** Since public-key routing leads communications directly to the receiving endpoints, there is no need for any account registration on any servers. A business card containing your first contact's public key is sufficient to bootstrap your node and start using the new system. You just hold it in front of the webcam to access her profile, start a contact subscription or formulate a message.
 1. **Trust no one:** These projects share an approach that treats the network, and all parties on the network, as potentially hostile and not to be trusted. With this approach, a user's security can only be betrayed if their own device is compromised or the software is flawed or tampered with, but the user is protected from attacks against any service provider (because there typically is not one).
-1. **No authorities:** Since the cryptographic operations are self-validating, there is no need for beither certification nor domain naming authorities. The bureaucracy of having an identity on the Internet is gone.
-1. **Potential for mesh networking:** If implemented properly, public-key based routing systems do not depend on the Internet's current routing methodology such as BGP, the Border Gateway Protocol. This means they can self-organize even if there was no IP-based routing underneath. These technologies can be deployed as an overlay over the existing Internet, but they can also find routes across a network of mesh nodes or an alternative Internet which models intercontinental underwater cabling as a particularely strong link between nodes that are unusually distant from each other. Many of these new tools have the ability to route by bluetooth or ad-hoc wireless proximity, allowing for independent email infrastructure in countries where the government has to be considered an opponent.
+1. **No authorities:** Since the cryptographic operations are self-validating, there is no need for neither certification nor domain naming authorities. The bureaucracy of having an identity on the Internet is gone.
+1. **Potential for mesh networking:** If implemented properly, public-key based routing systems do not depend on the Internet's current routing methodology such as BGP, the Border Gateway Protocol. This means they can self-organize even if there was no IP-based routing underneath. These technologies can be deployed as an overlay over the existing Internet, but they can also find routes across a network of mesh nodes or an alternative Internet which models intercontinental underwater cabling as an unusually strong direct link between nodes that are actually very distant from each other. Many of these new tools have the ability to route by bluetooth or ad-hoc wireless proximity, allowing for independent email infrastructure in countries where the government has to be considered an opponent.
 
 Disadvantages are:
 
 1. You need to install custom new technology.
-1. Most projects still have some specific drawbacks due to their youth.
-1. Allowing for communication and data exchange even if sender and recipient aren't on the network at the same time takes special provisions in relay infrastructure that isn't yet implemented in any of the projects. This problem does not persist if at least one of the participants in a communication is always on.
+1. Several projects still have some specific drawbacks due to their youth.
+1. Allowing for communication and data exchange even if sender and recipient aren't on the network at the same time takes special provisions in relay infrastructure that isn't yet implemented in any of the projects. This problem does not persist if at least one of the participants in a communication is always on (think of a smartphone flatrate or a router device at home).
+1. To ensure safety in cryptographic communication it is required that you set up contacts in advance before you can communicate with them. This is a strength, but it may appear as a disadvantage at first.
 
 When in their infancy, these projects usually start out with a pure peer-to-peer architecture, which has the drawbacks of being slow, CPU intensive and potentially less protective of the social graph than even a federated architecture. Projects that have come of age such as Tor and I2P however demonstrate how an infrastructure of collaborating relay nodes can provide for performance, metadata protection and avoid computational load on the endpoints. Strategies for organization of such relay infrastructure have been a hot topic of research for over a decade. Most of these infrastructures make use of distributed hashtable technology, which in its infancy was suffering of problems like lack of look-up privacy and [Sybil attacks](https://en.wikipedia.org/wiki/Sybil_attack). The research community has provided for viable strategies to solve these problems using reputation systems based on behavior or social graph and projects such as GNUnet and Tribler have implemented them.
 
-It is important to understand that the way these new systems do not allow for a traditional user@domain addressing is not a drawback, it is a strength since users are no longer required to possess a keyboard or even know how to read and write. It is true that you do not realistically want to add a contact by typing in their public key information. What you do is to use the methods described in Key Discovery.
+It is important to understand that the way these new systems do not allow for traditional user@domain addressing is not a drawback, it is a strength since users are no longer required to possess a keyboard or even know how to read and write. It is true that you do not realistically want to add a contact by typing in their public key information. What you do is to use the methods described in Key Discovery.
 
 <a name="briar"></a>Briar
 -----------------------------------------------------------
+
+Briar is a project working on a messaging and forum solution which distributes content opportunistically, that means whenever two nodes meet. It is designed to support the work of activists in oppressive countries by making use of wireless mesh networking between telephony devices. Briar actually doesn't use public keys for identification of users, each communication thread has its own ephemeral key which is advanced for each message, achieving an advanced kind of forward secrecy similar to Pond.
 
 <a name="cables"></a>Cables
 -----------------------------------------------------------
@@ -463,19 +466,20 @@ https://github.com/mkdesu/cables
 
 <a name="cjdns-net2o"></a>cjdns and net2o
 -----------------------------------------------------------
-cjdns and net2o are public-key routing overlay networks for the Internet. They do not provide any custom email applications, so you have to combine them with running an email server on your personal device. They provide encryption for any kind of communication by default, but they do not deliver transaction data protection.
 
+cjdns and net2o are public-key routing overlay networks for the Internet. They do not provide any custom email applications, so you have to combine them with running an email server on your personal device. They provide encryption for any kind of communication by default, but they do not deliver transaction data protection.
 
 <a name="goldbug"></a>Goldbug
 -----------------------------------------------------------
 
-http://goldbug.sf.net
+[Goldbug][http://goldbug.sf.net] uses opportunistic routing, too, but it currently offers no transaction data protection.
 
 * Written in: C++, Qt
 * License: BSD
 
 <a name="i2pbote"></a>I2PBote
 -----------------------------------------------------------
+I2PBote is a messaging system on top of I2P. It has the appearance of a web mail interface but actually makes use of I2P's transaction data obfuscation capabilities embedded in its public-key based routing.
 
 <a name="pond"></a>Pond
 -----------------------------------------------------------
@@ -484,28 +488,29 @@ http://goldbug.sf.net
 
 Pond is an email-like messaging application with several unique architectural and cryptographic features that make it stand out in the field.
 
-**Message Encryption**: Pond uses [Axolotl](https://github.com/trevp/axolotl/wiki) for asynchronous forward secret messages where the key is frequently ratcheted (akin to OTR, but more robust).
+**Message Encryption**: Similarly to Briar, Pond uses [Axolotl](https://github.com/trevp/axolotl/wiki) for asynchronous forward secret messages where the key is frequently ratcheted (akin to OTR, but more robust).
 
-**Routing**: Pond uses a unique architecture where every user relies on a service provider for receiving messages, but sent messages are delivered directly to the recipient's server (over Tor). This allows for strong metadata protection, but does not suffer from the other problems that peer-to-peer systems typically do. In order to prevent excessive Spam under this scheme, Pond uses a clever system of group signatures to allow the server to check if a sender is authorized to deliver to a particular user without leaking any information to the server.
+**Routing**: Pond uses a unique architecture where every user relies on a service provider for receiving messages, but sent messages are delivered directly to the recipient's server using Tor's public-key routing capability better known as "hidden services." Transaction data protection is given not only by using Tor, but also in the way periodic meaningless transactions are performed. In order to prevent Spam under this scheme, Pond uses a clever system of group signatures to allow the server to check if a sender is authorized to deliver to a particular user without leaking any information to the server.
 
-**Keys**: Pond uses Panda, a system for secure peer validation using short authentication strings.
+**Keys**: Pond uses PANDA, a method for secure peer discovery and validation using short authentication strings. This has the advantage of not appearing bureacratic as shared secret exchanges on OTR do, since this method actually establishes the first contact, but it also has the disadvantage of currently operating on a centralized service.
 
 Pond's advantages include:
 
-* Very high security: forward secrecy, metadata protection, resistant to traffic analysis.
-* Pond hybrid federated and peer-to-peer approach is cool and holds a lot of promise.
+* Very high security: forward secrecy, metadata protection, resistance to traffic analysis.
+* Pond hybrid federated and public-key routing approach is a reasonable interim solution until public-key routing provide for message availability themselves.
 * Written in Go, and thus probably has many fewer security flaws than programs written in C or C++.
 * Pond is written by Adam Langley, an extremely well respected crypto-engineer.
+* The usability of Pond is imperfect, but already superior to most PGP interfaces.
 
 Pond's disadvantages include:
 
-* Uses non-human memorial unique identifiers, although this is not a necessary element of the design.
-* Requires that you set up contacts in advance before you can communicate with them (via a Short Authentication String or full public key exchange).
-* Pond is still very difficult to install and use.
+* It maintains the old-fashioned dependency on servers, and since maintaining a Pond server is rather unusual, the architecture is prone to generating few very popular servers which then constitute honeypots and single points of failure.
+* Pond is not architected for group communications and would scale worse than regular email at that.
+* Pond's architecture does not allow to evolve into instant messaging or social networking, instead it imposes a deceleration of human interactions which can be considered a strength in the eyes of the 'slow tech' community. Some say the name stems from the time it gives you to ponder about what you will write.
+* It does not provide support for generation or acquisition of QR codes, yet.
+* Pond is currently rather difficult to install.
 
-Pond is an exciting experiment in how you could build a very secure post-email protocol. Although Pond currently uses non-human identifiers, Pond could be easily modified to use traditional email username@domain.org identifiers (because it relies on service providers for message reception). The requirement in Pond that both parties pre-exchange keys could also be modified to allow users to set up addresses that could receive messages from anyone, albeit at the cost of likely Spam. Currently, Pond uses Tor to anonymize message routing, but the Tor network was designed for low-latency. Pond could potentially use a more secure anonymization network that was designed for higher-latency asynchronous messages.
-
-Ultimately, Pond's unique design makes it a very strong candidate for incorporation into a messaging application that could automatically upgrade from email to Pond should it detect that both parties support it.
+Pond is an exciting experiment in how you could build a very secure post-email protocol. Although Pond currently uses non-human identifiers, Pond could be easily modified to use traditional email username@domain.org identifiers (because it relies on service providers for message reception). Currently, Pond uses Tor to anonymize message routing, but the Tor network was designed for low-latency. Pond could potentially use a more secure anonymization network that was designed for higher-latency asynchronous messages.
 
 * Written in: Go
 * Source code: https://github.com/agl/pond
@@ -515,8 +520,27 @@ Ultimately, Pond's unique design makes it a very strong candidate for incorporat
 <a name="retroshare"></a>Retroshare
 -----------------------------------------------------------
 
+Retroshare is a complex and somewhat confusing application that provides forums, subscription channels, file sharing, chats and a mail interface that looks very familiar to traditional email users. In practice it is an impressive one stop shop for peer-to-peer group collaboration where everything is end-to-end encrypted and forward secret where applicable.
+
+Retroshare has no relay network, so it operates its own distributed hashtable from each node. This means it has the typical deficits of P2P technology: slow and continously making use of power and bandwidth. It also deficits in metadata protection since nodes typically interact directly with other nodes, thus exposing the social graph. All of these problems can be solved by combining Retroshare with a Tor hidden service. In that case the built-in DHT is disabled and Retroshare operates on top of Tor's public-key routing infrastructure.
+
+One annoying bug still persists: When connecting a Retroshare node using the TLS protocol, a certificate is returned that exposes the user name provided by its user. This means you should always use a pseudonym you have never used in any other context before to avoid getting socially graphed.
+
 <a name="secushare"></a>secushare
 -----------------------------------------------------------
+
+[Secure Share][http://secushare.org] has been cited in a research paper as the most advanced and ambitious of projects aimed at providing a distributed social network, which naturally includes a mail system. secushare is architected on top of a publish/subscribe paradigm, which hides the complexity of multicast data store and forward distribution trees operating within the [GNUnet][https://gnunet.org] public-key routing framework. This means, that if everything goes well, resulting applications will have the scalability properties of cloud technology although they are actually operating on voluntarily contributed infrastructure. The aim is to offer the full breadth of Facebook-like social services in a distributed manner, letting each endpoint have a view of its neighboring social graph and hosting profile and microblogging data.
+
+The built-in mail system integrates synchronous and group messaging naturally. Encryption happens automatically using ephemeral ratchets for each pubsub channel. Channels can contain an unlimited number of recipients, but they can be as small as two people or just two devices of the same person, allowing for synchronization. Data availability is achieved by having relay nodes store messages until they can be delivered. Relay nodes are chosen in a strategically unpredictable manner akin to Tor's EntryNodes so that honeypots and single points of failure are avoided. A more flexible kind of onion routing is planned for transaction data protection, allowing the user to choose a trade-off between privacy and convenience themselves. But even if they choose convenience, they will experience better protection than what they get from email today, and they will provide cover traffic to those in need of better privacy.
+
+GNUnet supports secushare with fully Internet-independent routing, capable of running over custom infrastructure and mesh networks, and a highly innovative look-up-privacy-protecting cryptographic name resolution mechanism on top of hardened DHT technology, called GNS. secushare uses PSYC as its higher level social messaging protocol syntax, drawing from a long history of experience in efficient and extensible design of decentralized communication systems.
+
+The big problem with secushare is that since its prototype in 2012 the code has been disassembled and is being reconstructed within the framework of GNUnet, so it's currently not available. The prototype was done in form of a native Qt/QML application, but a Javascript API for web-based UIs is also in the planning.
+
+* Written in: C
+* Source code: https://gnunet.org/svn/gnunet/src/
+* License: Affero GPL
+* Platforms: anything
 
 <a name="susimail"></a>Susimail
 -----------------------------------------------------------
@@ -541,8 +565,8 @@ Advantages:
 
 Disadvantages:
 
-* no forward secrecy
 * unsolved scaling issues: all messages are broadcast to everyone
+* no forward secrecy
 * because there is no forward secrecy, it is especially problematic that anyone can grab an encrypted copy of any message in the system. This means if the private key is ever compromised, then all the past messages can be decrypted easily by anyone using the system.
 * relies on proof of work for spam prevention, which is probably not actually that preventative (spammers often steal CPU anyway).
 
