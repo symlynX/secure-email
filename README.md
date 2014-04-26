@@ -472,7 +472,7 @@ cjdns and net2o are public-key routing overlay networks for the Internet. They d
 <a name="goldbug"></a>Goldbug
 -----------------------------------------------------------
 
-[Goldbug][http://goldbug.sf.net] uses opportunistic routing, too, but it currently offers no transaction data protection.
+[Goldbug](http://goldbug.sf.net) uses opportunistic routing, too, but it currently offers no transaction data protection.
 
 * Written in: C++, Qt
 * License: BSD
@@ -492,7 +492,7 @@ Pond is an email-like messaging application with several unique architectural an
 
 **Routing**: Pond uses a unique architecture where every user relies on a service provider for receiving messages, but sent messages are delivered directly to the recipient's server using Tor's public-key routing capability better known as "hidden services." Transaction data protection is given not only by using Tor, but also in the way periodic meaningless transactions are performed. In order to prevent Spam under this scheme, Pond uses a clever system of group signatures to allow the server to check if a sender is authorized to deliver to a particular user without leaking any information to the server.
 
-**Keys**: Pond uses PANDA, a method for secure peer discovery and validation using short authentication strings. This has the advantage of not appearing bureacratic as shared secret exchanges on OTR do, since this method actually establishes the first contact, but it also has the disadvantage of currently operating on a centralized service.
+**Keys**: Pond uses PANDA, a method for secure peer discovery and validation using short authentication strings. This has the advantage of not appearing bureaucratic as shared secret exchanges on OTR do, since this method actually establishes the first contact. On the other hand it has the disadvantage of currently operating on a centralized service.
 
 Pond's advantages include:
 
@@ -510,7 +510,7 @@ Pond's disadvantages include:
 * It does not provide support for generation or acquisition of QR codes, yet.
 * Pond is currently rather difficult to install.
 
-Pond is an exciting experiment in how you could build a very secure post-email protocol. Although Pond currently uses non-human identifiers, Pond could be easily modified to use traditional email username@domain.org identifiers (because it relies on service providers for message reception). Currently, Pond uses Tor to anonymize message routing, but the Tor network was designed for low-latency. Pond could potentially use a more secure anonymization network that was designed for higher-latency asynchronous messages.
+Pond is an exciting experiment in how you could build a very secure post-email protocol. Currently, Pond uses Tor to anonymize message routing, but the Tor network was designed for low-latency. Pond could potentially use a more secure anonymization network that was designed for higher-latency asynchronous messages.
 
 * Written in: Go
 * Source code: https://github.com/agl/pond
@@ -529,13 +529,15 @@ One annoying bug still persists: When connecting a Retroshare node using the TLS
 <a name="secushare"></a>secushare
 -----------------------------------------------------------
 
-[Secure Share][http://secushare.org] has been cited in a research paper as the most advanced and ambitious of projects aimed at providing a distributed social network, which naturally includes a mail system. secushare is architected on top of a publish/subscribe paradigm, which hides the complexity of multicast data store and forward distribution trees operating within the [GNUnet][https://gnunet.org] public-key routing framework. This means, that if everything goes well, resulting applications will have the scalability properties of cloud technology although they are actually operating on voluntarily contributed infrastructure. The aim is to offer the full breadth of Facebook-like social services in a distributed manner, letting each endpoint have a view of its neighboring social graph and hosting profile and microblogging data.
+[Secure Share](http://secushare.org) has been cited in a research paper as the most advanced and ambitious of projects aimed at providing a distributed social network, which naturally includes a mail system. secushare is architected on top of a publish/subscribe paradigm, which hides the complexity of multicast data store and forward distribution trees operating within the [GNUnet](https://gnunet.org) public-key routing framework. This means, that if everything goes well, resulting applications will have the scalability properties of cloud technology although they are actually operating on voluntarily contributed infrastructure.
+
+The aim is to offer the full breadth of Facebook-like social services in a distributed manner, letting each endpoint have a view of its neighboring social graph and hosting profile and microblogging data. This data is then used to impede sybil attacks, using methods agreed upon in several research papers, to allow for social adoption of contacts, freeing the majority of users from the hassle with public key crypto, and could possibly help in the improvement of quality of obfuscation circuit construction, as also suggested by some research work. The integration of mail and social networking is therefore not only natural from a usability perspective, it also makes sense from a security standpoint.
 
 The built-in mail system integrates synchronous and group messaging naturally. Encryption happens automatically using ephemeral ratchets for each pubsub channel. Channels can contain an unlimited number of recipients, but they can be as small as two people or just two devices of the same person, allowing for synchronization. Data availability is achieved by having relay nodes store messages until they can be delivered. Relay nodes are chosen in a strategically unpredictable manner akin to Tor's EntryNodes so that honeypots and single points of failure are avoided. A more flexible kind of onion routing is planned for transaction data protection, allowing the user to choose a trade-off between privacy and convenience themselves. But even if they choose convenience, they will experience better protection than what they get from email today, and they will provide cover traffic to those in need of better privacy.
 
 GNUnet supports secushare with fully Internet-independent routing, capable of running over custom infrastructure and mesh networks, and a highly innovative look-up-privacy-protecting cryptographic name resolution mechanism on top of hardened DHT technology, called GNS. secushare uses PSYC as its higher level social messaging protocol syntax, drawing from a long history of experience in efficient and extensible design of decentralized communication systems.
 
-The big problem with secushare is that since its prototype in 2012 the code has been disassembled and is being reconstructed within the framework of GNUnet, so it's currently not available. The prototype was done in form of a native Qt/QML application, but a Javascript API for web-based UIs is also in the planning.
+The big problem with secushare is that since its prototype in 2012 the code has been disassembled and is being reconstructed within the framework of GNUnet, so it's currently not available. The prototype was done in form of a native Qt/QML application, but a Javascript API for web-based UIs is also in the planning. Another issue is that GNUnet does not provide onion routing or other method of obfuscation as yet, and that a back-end of relay nodes similar to Tor's isn't available yet - thus, running GNUnet currently necessitates more local resources than it should.
 
 * Written in: C
 * Source code: https://gnunet.org/svn/gnunet/src/
@@ -591,3 +593,5 @@ There are many technologies that don't belong in this document because they eith
 * [OpenCom](http://opencom.io) is a secure email and email-like communication in the planning stages.
 * [Ubiquitous Encrypted Email](https://github.com/tomrittervg/uee) is a protocol draft for standards that could lead to universal adoption of encrypted email.
 * [Redecentralize](https://github.com/redecentralize/alternative-internet) has a list of decentralized networks, such as Tor.
+* [#youbroketheinternet](http://youbroketheinternet.org) is a platform that explains and promotes public-key based routing technologies for a new Internet (usually spelled GNU for its strict political requirements) and organizes them on an architectural map. It has dozens of videos from the project presentations held at events it hosts, explaining the various projects in detail. You should particularly appreciate the one with Jacob Appelbaum presenting Pond.
+
