@@ -30,15 +30,20 @@ Contents:
 1. [Email Infrastructure](#email-infrastructure)
   1. [Dark Mail Alliance](#dark-mail-alliance)
   1. [LEAP Encryption Access Project](#leap)
-1. [Post-email alternatives](#post-email-alternatives)
-  1. [Bitmessage](#bitmessage)
+1. [Public-Key Routing Systems](#public-key-routing)
+  1. [Briar](#briar)
   1. [Cables](#cables)
+  1. [cjdns and net2o](#cjdns-net2o)
+  1. [Goldbug](#goldbug)
+  1. [I2PBote](#i2pbote)
+  1. [Pond](#pond)
+  1. [Retroshare](#retroshare)
+  1. [secushare](#secushare)
+  1. [Susimail](#susimail)
+1. [Unclassified](#unclassified)
+  1. [Bitmessage](#bitmessage)
   1. [Dark Mail Alliance](#p2p-dark-mail-alliance)
   1. [FlowingMail](#flowingmail)
-  1. [Goldbug](#goldbug)
-  1. [Pond](#pond)
-1. [Unclassified](#unclassified)
-  1. [Startmail](#startmail)
 1. [Related Works](#related-works)
 
 <a name="common-problems"></a>Common Problems
@@ -55,7 +60,7 @@ Traditionally, public key cryptography for email has relied on either the X.509 
 
 This is where we are now: we have public key technology that is excessively difficult for the common user, and our only methods of key validation have fallen into disrepute. The projects listed here have plunged into this void, attempting to simplify the usage of public-key cryptography. These efforts have four elements:
 
-* Key discovery: There is no commonly used standard for discovering the public key attached to a particular email address. All the projects here that use OpenPGP intend to initially use, as a stop-gap measure, the OpenPGP keyservers for key discovery, although the keyserver infrastructure was not designed to be used in this way. Newer strategies for discovery are the exchange of public keys 1. using QR codes printed on business cards or brochures, 2. by bringing end devices into bluetooth range to each other, 3. by adopting new people from a trusted person's social graph.
+* Key discovery: There is no commonly used standard for discovering the public key attached to a particular email address. All the projects here that use OpenPGP intend to initially use, as a stop-gap measure, the OpenPGP keyservers for key discovery, although the keyserver infrastructure was not designed to be used in this way. Newer strategies for discovery are the exchange of public keys 1. using a graphic depiction of the public key (usually QR codes) printed on business cards or brochures, 2. by bringing end devices into bluetooth range to each other, 3. by adopting new people from a trusted person's social graph.
 * Key validation: If not Certificate Authorities or Web of Trust, what then? Nearly every project here uses Trust On First Use (TOFU) in one way or another. With TOFU, a key is assumed to be the right key the first time it is used. TOFU can work well for long term associations and for people who are not being targeted for attack, but its security relies on the security of the discovery transport and the application's ability to retain a memory of discovered keys. TOFU can break down in many real-world situations where a user might need to generate new keys or securely communicate with a new contact. The projects here are experimenting with TOFU in different ways, and these problems can likely be mitigated by combining TOFU with other measures. Still there are ways to avoid TOFU as indicated by at least three methods mentioned above: 1. printed QR code, 2. bluetooth exchange, 3. social adoption. Additionally there are validation strategies based on shared secrets. It is however a good design choice to not separate key discovery from validation or otherwise validation becomes a bureaucratic extra transaction that people will be too lazy to execute. Both TOFU and shared secret should therefore be discontinued in favor of the three stronger authentication methods.
 * Key availability: Almost every attempt to solve the key validation problem turns into a key availability problem, because once you have validated a public key, you need to make sure that this validation is available to the user on all the possible devices they might want to send or receive messages on. For systems that route by public key this is only a question of synchronizing address books, since there is no distinction between a person and her public key.
 * Key revocation: What happens when a private key is lost, and a user wants to issue a new public key? Of all the projects in this report, only one has an answer for how to deal with this in a post-CA and post-WoT world: All users need to generate master keys that they will hardly ever use in everyday life and have all day-to-day use keys derived from those. secushare's strategy for storing the master key safely is to print it out on a QR code for the user to hide in a safe place in the house, then remove the key material from memory. This way the master key can issue revocations for derived keys and bring new ones in circulation.
@@ -69,7 +74,7 @@ Metadata protection, however, is **hard**. In order to protect metadata, the mes
 
 In fact, many projects reject traditional email transport entirely and replace it with public-key based routing, frequently confused with peer-to-peer. These approaches to metadata protection generally fall into four camps: (1) directly pass the message from sender's device to recipients device by physical interaction; (2) relay messages through a network of socially interwoven nodes; (3) broadcast messages to everyone; (4) relay messages through an anonymization network such as Tor. The third solution faces serious problems of scalability.
 
-All schemes that do not combine metadata protection with public-key based routing face the prospect of increasing Spam, since one of the primary methods used to prevent Spam is analysis of metadata.
+All schemes that do not combine metadata protection with the implicit rejection of messages from socially unrelated strangers face the prospect of increasing Spam, since one of the primary methods used to prevent Spam is analysis of metadata. Some projects like Retroshare, Briar and in particular secushare compensate for this by offering social-graph-based discovery of contacts, thus allowing to introduce yourself to someone via first or possibly second degree of common contacts.
 
 <a name="forward-secrecy"></a>Forward Secrecy
 -----------------------------------------------------------
@@ -412,62 +417,32 @@ LEAP includes both a client application and turn-key system to automate the proc
 * Design documentation: https://leap.se/docs
 * License: mostly GPL v3, some MIT and AGPL.
 
-<a name="post-email-alternatives"></a>Post-email alternatives
+<a name="public-key-routing"></a>Public-Key Routing Systems
 ===========================================================
 
-There are several projects to create alternatives to email that are more secure yet still email-like.
+Out of a tradition of peer-to-peer systems a new bread of Internet routing technologies is emerging which has quite interesting effects regarding possible solutions for email.
+These technologies share some essential advantages:
 
-These projects share some common advantages:
-
+1. **Public key as the identifier:** All these projects also use the user's public key as the unique routing identifier for a user, allowing for decentralized and unique names. This neatly solves the problem of validating public keys, because every identifier basically *is* a key, so there is no need to establish a mapping from an identifier to a key.
+1. **Ease of use:** By having the cryptography an essential part of how the Internet works, applications hardly need to deal with it any longer. All communication is always encrypted to the recipients of the messages, allowing for dramatically simplified user interfaces that anyone can learn to use.
+1. **Impossible to use without encryption:** Some researchers think the most awful problem about traditional email is that as long as it can accept unencrypted mail, people will send unencrypted mail and expose most private aspects of the recipient's life against her will. Public-key based routing systems make such profoundly human behaviour impossible and thus close the biggest of all loopholes in Internet technology.
+1. **No account management:** Since public-key routing leads communications directly to the receiving endpoints, there is no need for any account registration on any servers. A business card containing your first contact's public key is sufficient to bootstrap your node and start using the new system. You just hold it in front of the webcam to access her profile, start a contact subscription or formulate a message.
 1. **Trust no one:** These projects share an approach that treats the network, and all parties on the network, as potentially hostile and not to be trusted. With this approach, a user's security can only be betrayed if their own device is compromised or the software is flawed or tampered with, but the user is protected from attacks against any service provider (because there typically is not one).
-1. **Public-Key as the Identifier:** All these projects also use the user's public key as the unique routing identifier for a user, allowing for decentralized and unique names. This neatly solves the problem of validating public keys, because every identifier basically *is* a key, so there is no need to establish a mapping from an identifier to a key.
+1. **No authorities:** Since the cryptographic operations are self-validating, there is no need for beither certification nor domain naming authorities. The bureaucracy of having an identity on the Internet is gone.
+1. **Potential for mesh networking:** If implemented properly, public-key based routing systems do not depend on the Internet's current routing methodology such as BGP, the Border Gateway Protocol. This means they can self-organize even if there was no IP-based routing underneath. These technologies can be deployed as an overlay over the existing Internet, but they can also find routes across a network of mesh nodes or an alternative Internet which models intercontinental underwater cabling as a particularely strong link between nodes that are unusually distant from each other. Many of these new tools have the ability to route by bluetooth or ad-hoc wireless proximity, allowing for independent email infrastructure in countries where the government has to be considered an opponent.
 
+Disadvantages are:
 
+1. You need to install custom new technology.
+1. Most projects still have some specific drawbacks due to their youth.
+1. Allowing for communication and data exchange even if sender and recipient aren't on the network at the same time takes special provisions in relay infrastructure that isn't yet implemented in any of the projects. This problem does not persist if at least one of the participants in a communication is always on.
 
-The humbug that follows is so incredibly biased and unscientific
-that I need to make a pause to even be able to continue from here.
-It is evident that Elijah has no clue how today's public-key based
-systems actually function, how they have successfully addressed
-Sybil attacks and further on. This is pretty annoying.
+When in their infancy, these projects usually start out with a pure peer-to-peer architecture, which has the drawbacks of being slow, CPU intensive and potentially less protective of the social graph than even a federated architecture. Projects that have come of age such as Tor and I2P however demonstrate how an infrastructure of collaborating relay nodes can provide for performance, metadata protection and avoid computational load on the endpoints. Strategies for organization of such relay infrastructure have been a hot topic of research for over a decade. Most of these infrastructures make use of distributed hashtable technology, which in its infancy was suffering of problems like lack of look-up privacy and [Sybil attacks](https://en.wikipedia.org/wiki/Sybil_attack). The research community has provided for viable strategies to solve these problems using reputation systems based on behavior or social graph and projects such as GNUnet and Tribler have implemented them.
 
-Do not consider anything that follows of actual relevance, please.
-Thank you.
+It is important to understand that the way these new systems do not allow for a traditional user@domain addressing is not a drawback, it is a strength since users are no longer required to possess a keyboard or even know how to read and write. It is true that you do not realistically want to add a contact by typing in their public key information. What you do is to use the methods described in Key Discovery.
 
---lynX
-
-
-
-Except for Pond, all these alternatives take a pure peer-to-peer approach. As such, they face particular challenges:
-
-1. **The "Natural" Network**: Many advocates of peer-to-peer networking advance the notion that decentralized networks are the most efficient networks and are found everywhere in nature (in the neurons in our brain, in how mold grows, in how insects communicate, etc). This notion is only partially true. Networks are found in nature, but these network are not radically decentralized. Instead, natural networks tend to follow a power law distribution (aka "[scale free networks](https://en.wikipedia.org/wiki/Scale-free_network)"), where there is a high degree of partial centralization that balances "brokerage" (ability to communicate far in the network) with "closure" (ability to communicate close in the network). Thus, in practice, digital networks rely on "super hubs" that process most of the traffic. These hubs need to be maintained and hosted by someone, often at great expense (and making the network much more vulnerable to Sybil attacks).
-1. **The Internet:** Sadly, the physical internet infrastructure is actually very polycentric rather than decentralized (more akin to a tree than a spider's web). One reason for the rise of cloud computing is that resources are much cheaper near the core of the internet than near the periphery. Technical strategies that attempt to leverage the periphery will always be disadvantaged from an efficiency standpoint.
-1. **Traffic Analysis:** Most of the peer-to-peer approaches directly relay messages from sender's device to recipient's device, or route messages through the participant's contacts. Such an approach to message routing makes it potentially very easy for a network observer to map the network of associations, even if the message protocol otherwise offers very strong metadata protection.
-1. **Sybil Attacks:** By their nature, peer-to-peer networks do not have a method of blocking participation in the network. This makes them potentially very vulnerable to [Sybil attacks](https://en.wikipedia.org/wiki/Sybil_attack), where an attacker creates a very large number of fake participants in order to control the network or reveal the identity of other network participants.
-1. **Mobile:** Peer-to-peer networks are resource intensive, typically with every node in the network responsible for continually relaying traffic and keeping the network healthy. Unfortunately, this kind of thing is murder on the battery life of a mobile device, and requires a lot of extra network traffic.
-1. **Identifiers**: Using key fingerprints as unique identifiers has some advantages, but it also makes user identifiers impossible to remember. There is a lot of utility in the convenience of memorable username handles, as evidence in the use of email addresses and twitter handles.
-1. **Data Availability**: Unless also paired with a cloud component, peer-to-peer networks have much lower data availability than other approaches. For example, it takes much longer to update message deliveries from a peer network than from a server, particularly when the device has been offline for a while. Also, if a device is lost or destroyed, generally the user loses all their data.
-
-Most of these challenges have possible technological solutions that might make peer-to-peer approaches the most attractive option in the long run. For example, researchers may discover ways to make P2P networks less battery intensive. For this reason, it is important that research continue in this area. However, [in the long run we are all dead](https://en.wikiquote.org/wiki/John_Maynard_Keynes) and peer-to-peer approaches face serious hurdles before they can achieve the kind of user experience demanded today.
-
-<a name="bitmessage"></a>Bitmessage
+<a name="briar"></a>Briar
 -----------------------------------------------------------
-
-[Bitmessage](https://bitmessage.org)
-
-Bitmessage is a peer-to-peer email-like communication protocol. It is totally decentralized and places no trust on any organization for services or validation.
-
-Advantages:
-
-* resistant to metadata analysis
-* relatively easy to use
-* works and is actively used by many people.
-
-Disadvantages:
-
-* no forward secrecy
-* unsolved scaling issues: all messages are broadcast to everyone
-* because there is no forward secrecy, it is especially problematic that anyone can grab an encrypted copy of any message in the system. This means if the private key is ever compromised, then all the past messages can be decrypted easily by anyone using the system.
-* relies on proof of work for spam prevention, which is probably not actually that preventative (spammers often steal CPU anyway).
 
 <a name="cables"></a>Cables
 -----------------------------------------------------------
@@ -477,17 +452,10 @@ https://github.com/mkdesu/cables
 * Written in: C, Bash
 * License: GPL v2
 
-<a name="p2p-dark-mail-alliance"></a>Dark Mail Alliance
+<a name="cjdns-net2o"></a>cjdns and net2o
 -----------------------------------------------------------
+cjdns and net2o are public-key routing overlay networks for the Internet. They do not provide any custom email applications, so you have to combine them with running an email server on your personal device. They provide encryption for any kind of communication by default, but they do not deliver transaction data protection.
 
-The Dark Mail Alliance plans to incorporate traditional email, a federated email alternative, and a second email alternative that is pure peer-to-peer. Details are not yet forthwith.
-
-<a name="flowingmail"></a>FlowingMail
------------------------------------------------------------
-
-[FlowingMail](http://flowingmail.com)
-
-P2P secure, encrypted email system.
 
 <a name="goldbug"></a>Goldbug
 -----------------------------------------------------------
@@ -496,6 +464,9 @@ http://goldbug.sf.net
 
 * Written in: C++, Qt
 * License: BSD
+
+<a name="i2pbote"></a>I2PBote
+-----------------------------------------------------------
 
 <a name="pond"></a>Pond
 -----------------------------------------------------------
@@ -531,6 +502,52 @@ Ultimately, Pond's unique design makes it a very strong candidate for incorporat
 * Source code: https://github.com/agl/pond
 * License: BSD
 * Platforms: anything you can compile Go on (for command line interface) or anything you can compile Go + Gtk (for GUI interface).
+
+<a name="retroshare"></a>Retroshare
+-----------------------------------------------------------
+
+<a name="secushare"></a>secushare
+-----------------------------------------------------------
+
+<a name="susimail"></a>Susimail
+-----------------------------------------------------------
+
+<a name="unclassified"></a>Unclassified
+===========================================================
+
+These projects use unusual approaches or haven't been categorized by the authors properly yet.
+
+<a name="bitmessage"></a>Bitmessage
+-----------------------------------------------------------
+
+[Bitmessage](https://bitmessage.org)
+
+Bitmessage is a peer-to-peer email-like communication protocol. It is totally decentralized and places no trust on any organization for services or validation.
+
+Advantages:
+
+* resistant to metadata analysis
+* relatively easy to use
+* works and is actively used by many people.
+
+Disadvantages:
+
+* no forward secrecy
+* unsolved scaling issues: all messages are broadcast to everyone
+* because there is no forward secrecy, it is especially problematic that anyone can grab an encrypted copy of any message in the system. This means if the private key is ever compromised, then all the past messages can be decrypted easily by anyone using the system.
+* relies on proof of work for spam prevention, which is probably not actually that preventative (spammers often steal CPU anyway).
+
+<a name="p2p-dark-mail-alliance"></a>Dark Mail Alliance
+-----------------------------------------------------------
+
+The Dark Mail Alliance plans to incorporate traditional email, a federated email alternative, and a second email alternative that is pure peer-to-peer. Details are not yet forthwith.
+
+<a name="flowingmail"></a>FlowingMail
+-----------------------------------------------------------
+
+[FlowingMail](http://flowingmail.com)
+
+P2P secure, encrypted email system.
 
 <a name="related-works"></a>Related Works
 ===========================================================
