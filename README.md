@@ -1,4 +1,4 @@
-There are an increasing number of projects working on next generation secure email or email-like communication. This is an initial draft report highlighting the projects and comparing the approaches. Please help us fill in the missing details and correct any inaccuracies. To contribute to this document, fork this repository and issue a pull request.
+There are an increasing number of projects working on next generation secure email or email-like communication. Only few of them fulfil the [security requirements](http://libreplanet.org/wiki/GNU/consensus/berlin-2013) of the #[youbroketheinternet](http://youbroketheinternet.org) community. This is a report highlighting the projects and comparing the approaches. Please help us fill in the missing details and correct any inaccuracies. To contribute to this document, fork [its repository](https://github.com/symlynX/secure-email).
 
 Contents:
 
@@ -165,8 +165,6 @@ PrivateSky was a secure web-based email service that chose to shut down because 
 The makers of the secure search engine [startpage.com](https://startpage.com) have announced they will be providing secure email service.
 
 Despite the tag line as the "world's most private email," StartMail is remarkably insecure. If offers regular IMAP service and a webmail interface that supports OpenPGP, but the user still must trust StartMail entirely. For example when you authenticate, your password string is sent to StartMail, and new OpenPGP keypairs are generated on the server, not the client. The website also makes some dubious statements, such as claiming to be more secure because their TLS server certificate supports extended validation.
-
-Verdict: oil of snake
 
 <a name="scramble"></a>Scramble
 -----------------------------------------------------------
@@ -468,21 +466,17 @@ It is important to understand that the way these new systems do not allow for tr
 <a name="cjdns-net2o"></a>cjdns and net2o
 -----------------------------------------------------------
 
-cjdns and net2o are public-key routing overlay networks for the Internet. They do not provide any custom email applications, so you have to combine them with running an email server on your personal device. They provide encryption for any kind of communication by default, but they do not deliver transaction data protection. Again, if both nodes are alternatingly offline, mails will remain stuck in the queue.
+[cjdns](http://cjdns.info) and [net2o](http://net2o.de) are public-key routing overlay networks for the Internet. They do not provide any custom email applications, so you have to combine them with running an email server on your personal device. They provide encryption for any kind of communication by default, but they do not deliver transaction data protection. Again, if both nodes are alternatingly offline, mails will remain stuck in the queue.
 
 <a name="flowingmail"></a>FlowingMail
 -----------------------------------------------------------
 
-[FlowingMail](http://flowingmail.com)
-
-A DHT-based cryptographically routed email system in the planning stage.
-UDP is used to put mails into the DHT.
-Problem: How does the DHT know it is not being spammed?
+[FlowingMail](http://flowingmail.com) is a DHT-based cryptographically routed email system in the planning stage. UDP is used to put mails into the DHT. Problem: How does the DHT know it is not being spammed?
 
 <a name="freemail"></a>Freemail
 -----------------------------------------------------------
 
-[Freemail](https://freenetproject.org/freemail.html) is an email system for Freenet. It emulates traditional IMAP and SMTP so you can use your traditional mail software with it. The addressing then appears as <whateveryoulike>@<publickey>.freemail
+[Freemail](https://freenetproject.org/freemail.html) is an email system for Freenet. It emulates traditional IMAP and SMTP so you can use your regular mail software with it. The addressing then appears as <whateveryoulike>@<publickey>.freemail
 
 <a name="goldbug"></a>Goldbug
 -----------------------------------------------------------
@@ -495,12 +489,12 @@ Problem: How does the DHT know it is not being spammed?
 <a name="i2pbote"></a>I2P-Bote
 -----------------------------------------------------------
 
-[I2P-Bote](http://i2pbote.i2p.us) is a messaging system on top of I2P. It has the appearance of a web mail interface but actually makes use of I2P's transaction data obfuscation capabilities embedded in its public-key based routing. Messages are directly stored into the DHT.
+[I2P-Bote](http://i2pbote.i2p.us) is a messaging system on top of I2P. It has the appearance of a web mail interface but actually makes use of I2P's transaction data obfuscation capabilities embedded in its public-key based routing. Messages are directly stored into a DHT.
 
 <a name="pond"></a>Pond
 -----------------------------------------------------------
 
-[pond.imperialviolet.org](https://pond.imperialviolet.org) is an email-like messaging application with several unique architectural and cryptographic features that make it stand out in the field.
+[Pond](https://pond.imperialviolet.org) is an email-like messaging application with several unique architectural and cryptographic features that make it stand out in the field.
 
 **Message Encryption**: Similarly to Briar, Pond uses [Axolotl](https://github.com/trevp/axolotl/wiki) for asynchronous forward secret messages where the key is frequently ratcheted (akin to OTR, but more robust).
 
@@ -600,4 +594,9 @@ There are many technologies that don't belong in this document because they eith
 * [Ubiquitous Encrypted Email](https://github.com/tomrittervg/uee) is a protocol draft for standards that could lead to universal adoption of encrypted email.
 * [Redecentralize](https://github.com/redecentralize/alternative-internet) has a list of decentralized networks, such as Tor.
 * [#youbroketheinternet](http://youbroketheinternet.org) is a platform that explains and promotes public-key based routing technologies for a new Internet (usually spelled GNU for its strict political requirements) and organizes them on an architectural map. It has dozens of videos from the project presentations held at events it hosts, explaining the various projects in detail. You should particularly appreciate the one with Jacob Appelbaum presenting Pond.
+
+<a name="credits"></a>Credits
+===========================================================
+
+The [original version](https://github.com/OpenTechFund/secure-email) of this document was authored by the lead developer of LEAP, who unfortunately [has some biased views](https://github.com/OpenTechFund/secure-email/pull/10) on the topic, so he prefers to maintain his own version of this. You can [inspect the changes](https://github.com/symlynX/secure-email/compare/OpenTechFund:master...master) from one version to the other.
 
