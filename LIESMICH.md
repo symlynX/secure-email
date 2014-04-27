@@ -1,3 +1,8 @@
+WARNING: This document is no longer up to date and contains a large number of inaccuracies. Please read the english original.
+===========================================================
+
+
+
 Eine zunehmende Zahl an Projekten arbeiten an einer neuen Generation für sichere Emails oder E-Mail-artiger Kommunikation. Dieser Bericht stellt die Projekte vor und vergleicht ihre Ansätze. Bitte hilf uns fehlende Details zu ergänzen und alle Fehler zu korrigieren. Um an diesem Dokument mitzuarbeiten, verwende die fork & pull-Funtkionalität von github.
 
 Contents:

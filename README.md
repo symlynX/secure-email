@@ -35,16 +35,17 @@ Contents:
   1. [Briar](#briar)
   1. [Cables](#cables)
   1. [cjdns and net2o](#cjdns-net2o)
+  1. [FlowingMail](#flowingmail)
+  1. [Freemail](#freemail)
   1. [Goldbug](#goldbug)
   1. [I2PBote](#i2pbote)
   1. [Pond](#pond)
   1. [Retroshare](#retroshare)
   1. [secushare](#secushare)
-  1. [Susimail](#susimail)
 1. [Unclassified](#unclassified)
   1. [Bitmessage](#bitmessage)
   1. [Dark Mail Alliance](#p2p-dark-mail-alliance)
-  1. [FlowingMail](#flowingmail)
+  1. [Susimail](#susimail)
 1. [Related Works](#related-works)
 
 <a name="tldr"></a>TL;DR: Executive Summary
@@ -454,12 +455,12 @@ It is important to understand that the way these new systems do not allow for tr
 <a name="briar"></a>Briar
 -----------------------------------------------------------
 
-Briar is a project working on a messaging and forum solution which distributes content opportunistically, that means whenever two nodes meet. It is designed to support the work of activists in oppressive countries by making use of wireless mesh networking between telephony devices. Briar actually doesn't use public keys for identification of users, each communication thread has its own ephemeral key which is advanced for each message, achieving an advanced kind of forward secrecy similar to Pond.
+[Briar](http://briar.sourceforge.net) is a project working on a messaging and forum solution which distributes content opportunistically, that means whenever two nodes meet. It is designed to support the work of activists in oppressive countries by making use of wireless mesh networking between telephony devices. Briar actually doesn't use public keys for identification of users, each communication thread has its own ephemeral key which is advanced for each message, achieving an improved kind of forward secrecy similar to Pond's.
 
 <a name="cables"></a>Cables
 -----------------------------------------------------------
 
-https://github.com/mkdesu/cables
+[Cables](http://dee.su/cables) is a mail system that runs over both Tor and I2P. It uses their respective public-key routing capabilities by generating a .onion and a .i2p service on each. The system periodically tries to contact recipients in order to deliver mail, which limits its scalability. Both communication partners have to be online for delivery to succeed. Regular mail clients can be used for composition and consumption of messages.
 
 * Written in: C, Bash
 * License: GPL v2
@@ -467,26 +468,39 @@ https://github.com/mkdesu/cables
 <a name="cjdns-net2o"></a>cjdns and net2o
 -----------------------------------------------------------
 
-cjdns and net2o are public-key routing overlay networks for the Internet. They do not provide any custom email applications, so you have to combine them with running an email server on your personal device. They provide encryption for any kind of communication by default, but they do not deliver transaction data protection.
+cjdns and net2o are public-key routing overlay networks for the Internet. They do not provide any custom email applications, so you have to combine them with running an email server on your personal device. They provide encryption for any kind of communication by default, but they do not deliver transaction data protection. Again, if both nodes are alternatingly offline, mails will remain stuck in the queue.
+
+<a name="flowingmail"></a>FlowingMail
+-----------------------------------------------------------
+
+[FlowingMail](http://flowingmail.com)
+
+A DHT-based cryptographically routed email system in the planning stage.
+UDP is used to put mails into the DHT.
+Problem: How does the DHT know it is not being spammed?
+
+<a name="freemail"></a>Freemail
+-----------------------------------------------------------
+
+[Freemail](https://freenetproject.org/freemail.html) is an email system for Freenet. It emulates traditional IMAP and SMTP so you can use your traditional mail software with it. The addressing then appears as <whateveryoulike>@<publickey>.freemail
 
 <a name="goldbug"></a>Goldbug
 -----------------------------------------------------------
 
-[Goldbug](http://goldbug.sf.net) uses opportunistic routing, too, but it currently offers no transaction data protection.
+[Goldbug](http://goldbug.sf.net) runs on an opportunistic broadcast routing mechanism called "Echo," but it currently offers no transaction data protection.
 
 * Written in: C++, Qt
 * License: BSD
 
-<a name="i2pbote"></a>I2PBote
+<a name="i2pbote"></a>I2P-Bote
 -----------------------------------------------------------
-I2PBote is a messaging system on top of I2P. It has the appearance of a web mail interface but actually makes use of I2P's transaction data obfuscation capabilities embedded in its public-key based routing.
+
+[I2P-Bote](http://i2pbote.i2p.us) is a messaging system on top of I2P. It has the appearance of a web mail interface but actually makes use of I2P's transaction data obfuscation capabilities embedded in its public-key based routing. Messages are directly stored into the DHT.
 
 <a name="pond"></a>Pond
 -----------------------------------------------------------
 
-[pond.imperialviolet.org](https://pond.imperialviolet.org/)
-
-Pond is an email-like messaging application with several unique architectural and cryptographic features that make it stand out in the field.
+[pond.imperialviolet.org](https://pond.imperialviolet.org) is an email-like messaging application with several unique architectural and cryptographic features that make it stand out in the field.
 
 **Message Encryption**: Similarly to Briar, Pond uses [Axolotl](https://github.com/trevp/axolotl/wiki) for asynchronous forward secret messages where the key is frequently ratcheted (akin to OTR, but more robust).
 
@@ -520,9 +534,9 @@ Pond is an exciting experiment in how you could build a very secure post-email p
 <a name="retroshare"></a>Retroshare
 -----------------------------------------------------------
 
-Retroshare is a complex and somewhat confusing application that provides forums, subscription channels, file sharing, chats and a mail interface that looks very familiar to traditional email users. In practice it is an impressive one stop shop for peer-to-peer group collaboration where everything is end-to-end encrypted and forward secret where applicable.
+[Retroshare](http://retroshare.sourceforge.net) is a complex and somewhat confusing application that provides forums, subscription channels, file sharing, chats and a mail interface that looks very familiar to traditional email users. In practice it is an impressive one stop shop for peer-to-peer group collaboration where everything is end-to-end encrypted and forward secret where applicable.
 
-Retroshare has no relay network, so it operates its own distributed hashtable from each node. This means it has the typical deficits of P2P technology: slow and continously making use of power and bandwidth. It also deficits in metadata protection since nodes typically interact directly with other nodes, thus exposing the social graph. All of these problems can be solved by combining Retroshare with a Tor hidden service. In that case the built-in DHT is disabled and Retroshare operates on top of Tor's public-key routing infrastructure.
+Retroshare has no relay network, so it operates its own distributed hashtable from each node. This means it has the typical deficits of P2P technology: slow and continously making use of power and bandwidth. It also deficits in metadata protection since nodes typically interact directly with other nodes, thus exposing the social graph. All of these problems can be solved by combining Retroshare with a Tor hidden service. In that case the built-in DHT is disabled and Retroshare operates on top of Tor's public-key routing infrastructure. This set-up has been done before, but it isn't documented. Retroshare developers have promised to support it officially.
 
 One annoying bug still persists: When connecting a Retroshare node using the TLS protocol, a certificate is returned that exposes the user name provided by its user. This means you should always use a pseudonym you have never used in any other context before to avoid getting socially graphed.
 
@@ -531,21 +545,18 @@ One annoying bug still persists: When connecting a Retroshare node using the TLS
 
 [Secure Share](http://secushare.org) has been cited in a research paper as the most advanced and ambitious of projects aimed at providing a distributed social network, which naturally includes a mail system. secushare is architected on top of a publish/subscribe paradigm, which hides the complexity of multicast data store and forward distribution trees operating within the [GNUnet](https://gnunet.org) public-key routing framework. This means, that if everything goes well, resulting applications will have the scalability properties of cloud technology although they are actually operating on voluntarily contributed infrastructure.
 
-The aim is to offer the full breadth of Facebook-like social services in a distributed manner, letting each endpoint have a view of its neighboring social graph and hosting profile and microblogging data. This data is then used to impede sybil attacks, using methods agreed upon in several research papers, to allow for social adoption of contacts, freeing the majority of users from the hassle with public key crypto, and could possibly help in the improvement of quality of obfuscation circuit construction, as also suggested by some research work. The integration of mail and social networking is therefore not only natural from a usability perspective, it also makes sense from a security standpoint.
+The aim is to offer a large number of Facebook-like social functionality in a distributed manner, letting each endpoint have a view of its neighboring social graph while hosting profile and microblogging data. This data is then used to 1. impede sybil attacks as described in several research papers, to 2. allow for social adoption of contacts, freeing the majority of users from the hassle with public key crypto, and 3. it could possibly help in the improvement of quality of obfuscation circuit construction, as also suggested by some research work. The integration of mail and social networking is therefore not only natural from a usability perspective, it also makes sense from a security standpoint.
 
-The built-in mail system integrates synchronous and group messaging naturally. Encryption happens automatically using ephemeral ratchets for each pubsub channel. Channels can contain an unlimited number of recipients, but they can be as small as two people or just two devices of the same person, allowing for synchronization. Data availability is achieved by having relay nodes store messages until they can be delivered. Relay nodes are chosen in a strategically unpredictable manner akin to Tor's EntryNodes so that honeypots and single points of failure are avoided. A more flexible kind of onion routing is planned for transaction data protection, allowing the user to choose a trade-off between privacy and convenience themselves. But even if they choose convenience, they will experience better protection than what they get from email today, and they will provide cover traffic to those in need of better privacy.
+The built-in mail system integrates synchronous and group messaging into a single "channel" concept. Encryption happens automatically using ephemeral ratchets for each pubsub channel. Channels can contain an unlimited number of recipients, but they can be as small as two people or just two devices of the same person, allowing for synchronization. Data availability is achieved by having relay nodes store messages until they can be delivered. Relay nodes are chosen in a strategically unpredictable manner akin to Tor's EntryNodes so that honeypots and single points of failure are avoided. A more flexible kind of onion routing is planned for transaction data protection, allowing the user to choose a trade-off between privacy and convenience themselves. But even if they choose convenience, they will experience better protection than what they get from email today, and they will provide cover traffic to those in need of better privacy.
 
-GNUnet supports secushare with fully Internet-independent routing, capable of running over custom infrastructure and mesh networks, and a highly innovative look-up-privacy-protecting cryptographic name resolution mechanism on top of hardened DHT technology, called GNS. secushare uses PSYC as its higher level social messaging protocol syntax, drawing from a long history of experience in efficient and extensible design of decentralized communication systems.
+GNUnet supports secushare with fully Internet-independent routing, capable of running over custom infrastructure and mesh networks, and a highly innovative look-up-privacy-protecting cryptographic name resolution mechanism on top of hardened DHT technology, called GNS. secushare uses PSYC as its higher level social messaging protocol syntax, drawing from experience in efficient and extensible design of decentralized communication systems.
 
-The big problem with secushare is that since its prototype in 2012 the code has been disassembled and is being reconstructed within the framework of GNUnet, so it's currently not available. The prototype was done in form of a native Qt/QML application, but a Javascript API for web-based UIs is also in the planning. Another issue is that GNUnet does not provide onion routing or other method of obfuscation as yet, and that a back-end of relay nodes similar to Tor's isn't available yet - thus, running GNUnet currently necessitates more local resources than it should.
+The big problem with secushare is that since its prototype in 2012 the code has been dismantled and is being reconstructed within the framework of GNUnet, so it's currently not available. The prototype was done in form of a native Qt/QML application, but a Javascript API for web-based UIs is also in the planning. Another issue is that GNUnet does not provide onion routing or other method of obfuscation as yet, and that a back-end of relay nodes similar to Tor's isn't available yet - thus, running GNUnet currently necessitates more local resources than it should.
 
 * Written in: C
 * Source code: https://gnunet.org/svn/gnunet/src/
 * License: Affero GPL
 * Platforms: anything
-
-<a name="susimail"></a>Susimail
------------------------------------------------------------
 
 <a name="unclassified"></a>Unclassified
 ===========================================================
@@ -555,9 +566,7 @@ These projects use unusual approaches or haven't been categorized by the authors
 <a name="bitmessage"></a>Bitmessage
 -----------------------------------------------------------
 
-[Bitmessage](https://bitmessage.org)
-
-Bitmessage is a peer-to-peer email-like communication protocol. It is totally decentralized and places no trust on any organization for services or validation.
+[Bitmessage](https://bitmessage.org) is a peer-to-peer email-like communication protocol. It is totally decentralized and places no trust on any organization for services or validation.
 
 Advantages:
 
@@ -577,12 +586,9 @@ Disadvantages:
 
 The Dark Mail Alliance plans to incorporate traditional email, a federated email alternative, and a second email alternative that is pure peer-to-peer. Details are not yet forthwith.
 
-<a name="flowingmail"></a>FlowingMail
+<a name="susimail"></a>Susimail
 -----------------------------------------------------------
-
-[FlowingMail](http://flowingmail.com)
-
-P2P secure, encrypted email system.
+[Susimail](http://echelon.i2p.us/I2Pguide/susimail.html) is a web-based mail client for I2P's centralized but anonymized mail service running at mail.i2p.
 
 <a name="related-works"></a>Related Works
 ===========================================================

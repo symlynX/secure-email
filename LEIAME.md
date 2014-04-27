@@ -1,3 +1,10 @@
+WARNING: This document is no longer up to date and contains a large number of inaccuracies. Please read the english original.
+===========================================================
+
+
+
+
+
 Há um número crescente de projetos trabalhando na próxima geração de e-mail seguro ou de comunicação semelhante ao e-mail. Esse é um rascunho inicial de um relatório destacando os projetos e comparando as suas abordagens. Por favor, ajude-nos a completar os detalhes que faltam e corrijam qualquer imprecisão. Para contribuir com esse documento, faça um fork desse repositório e faça pull request.
 
 Conteúdo:
