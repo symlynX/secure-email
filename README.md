@@ -9,6 +9,7 @@ Contents:
   1. [Forward Secrecy](#forward-secrecy)
   1. [Data Availability](#data-availability)
   1. [Secure Authentication](#secure-authentication)
+  1. [Installation and Bootstrap](#installation)
   1. [Scalability](#scalability)
   1. [Social Usability](#social-usability)
 1. [Web Mail](#web-mail)
@@ -114,6 +115,17 @@ For those projects that make use of a service provider, one of the key problems 
 * Sign a challenge from the server with the user's private key. This has the advantage of being nearly impossible to brute force attack, but is vulnerable to impostor server providers and requires that the user's device has the private key.
 
 No consensus or standard has yet emerged, although SRP has been around a while.
+
+<a name="installation"></a>Installation and Bootstrap
+-----------------------------------------------------------
+
+As we will show, having a proper, safe, end-to-end encryption experience, which also achieves goals such as protecting transaction data, cannot happen without a software installation. Be it a new client software, an embeddable encryption tool, a cryptographic routing infrastructure or an improved client/server coupling.
+
+Also, since more than 99% of population hasn't been using any encryption so far, the social bootstrap procedure will be starting from zero for most users. It is thus important to note that there is no gain in installing a technology which is compatible to the old email system: It re-introduces old threats and complicates user interfaces, even if there was a way to add encryption to the existing system that makes sense. [PGP over SMTP doesn't](http://secushare.org/PGP).
+
+For the 99% it makes more sense to simply start using a different software for secure messaging while also participating in the old email system using whatever insecure user interface they have been using so far. At some point they will have a sufficient number of contacts on the new system that they will use the old one less and less, just like people migrated from Myspace to Facebook.
+
+So it is a common challenge for all the projects to make installation and bootstrap as easy as possible.
 
 <a name="scalability"></a>Scalability
 -----------------------------------------------------------
