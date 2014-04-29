@@ -1,4 +1,4 @@
-There are an increasing number of projects working on next generation secure email or email-like communication. Only few of them fulfil the [security requirements](http://libreplanet.org/wiki/GNU/consensus/berlin-2013) of the #[youbroketheinternet](http://youbroketheinternet.org) community. This is a report highlighting the projects and comparing the approaches. Please help us fill in the missing details and correct any inaccuracies. To contribute to this document, fork [its repository](https://github.com/symlynX/secure-email).
+There are an increasing number of projects working on next generation secure email or email-like communication. Only few of them fulfil the [security requirements](http://libreplanet.org/wiki/GNU/consensus/berlin-2013) of the #[youbroketheinternet](http://youbroketheinternet.org) community. This is a report highlighting the projects and comparing the approaches. Please help us fill in the missing details and correct any inaccuracies. To contribute to this document, fork [its repository](https://github.com/symlynX/secure-email). This document is hosted at [youbroketheinternet.org](http://youbroketheinternet.org/secure-email), since it is bad practice to host content exclusively at commercial social networks. 
 
 Contents:
 
@@ -58,6 +58,8 @@ It is not surprising that projects that started over a decade ago re-inventing t
 
 It is reasonable to conclude that to improve and deploy such fundamentally new technology is lower hanging fruit than to further attempts of repairing the old broken architecture, but there is very emotional resistance in the systems administrators community to this kind of conclusion. If you think you need to make up your mind for yourself, this document is for you.
 
+Still, the alternative mail systems that fulfil the privacy requirements of #youbroketheinternet today are [Cables](#cables), [Freemail](#freemail), [I2P-Bote](#i2pbote) and [Pond](#pond). None of them however also fulfil the scalability and social usability aspects. These will be addressed by future technologies currently in the making.
+
 <a name="common-problems"></a>Common Problems
 ===========================================================
 
@@ -66,7 +68,7 @@ All of the technologies listed here face a common set of problems when trying to
 <a name="key-management"></a>Key Management
 -----------------------------------------------------------
 
-All the projects in this report use public-key encryption to allow a user to send a confidential message to the intended recipient, and for the recipient to verify the authorship of the message. Unfortunately, in traditional approaches to email, public-key encryption is notoriously difficult to use properly, even for advanced users. The very concepts are confusing for most users: public key versus private key, key signing, key revocation, signing keys versus encryption keys, bit length, and so on. Newer systems hide this complexity from the user, at the cost of being incompatible to the old methods.
+All the projects in this report use public-key encryption to allow a user to send a confidential message to the intended recipient, and for the recipient to verify the authorship of the message. Unfortunately, in traditional approaches to email, public-key encryption is notoriously difficult to use properly, even for advanced users. The very concepts are confusing for most users: public key versus private key, key signing, key revocation, signing keys versus encryption keys, bit length, and so on. Newer systems hide this complexity from the user, at the cost of being incompatible to the old methods, but since most of humanity doesn't know a single person who uses encrypted email, that is hardly a criterion.
 
 Traditionally, public key cryptography for email has relied on either the X.509 Certificate Authority (CA) system or a decentralized "Web of Trust" (WoT) for key validation (authenticating that a particular person owns a particular key). Recently, both schemes have come under intense criticism. Repeated security lapses at many of the Certificate Authorities have revealed serious flaws in the CA system. On the other hand, in an age where we better understand the power of social network analysis and the sensitivity of the social graph, the exposure of metadata by a publicly available "Web of Trust" is no longer acceptable from a security standpoint. Such information must only be available to the people involved, which puts limitations to the acceptable depth of the view of the social graph.
 
