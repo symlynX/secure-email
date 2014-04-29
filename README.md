@@ -28,6 +28,7 @@ Contents:
   1. [Dark Mail Alliance](#self-hosted-dark-mail)
   1. [FreedomBox](#freedombox)
   1. [Mailpile](#self-hosted-mailpile)
+  1. [Mail-in-a-box](#mail-in-a-box)
   1. [kinko](#kinko)
 1. [Email Infrastructure](#email-infrastructure)
   1. [Dark Mail Alliance](#dark-mail-alliance)
@@ -39,7 +40,7 @@ Contents:
   1. [FlowingMail](#flowingmail)
   1. [Freemail](#freemail)
   1. [Goldbug](#goldbug)
-  1. [I2PBote](#i2pbote)
+  1. [I2P-Bote](#i2pbote)
   1. [Pond](#pond)
   1. [Retroshare](#retroshare)
   1. [secushare](#secushare)
@@ -350,6 +351,21 @@ From its early conception, part of FreedomBox was "email and telecommunications 
 
 Although Mailpile is primarily a mail client, the background Python component can read the Maildir format for email. This means you could install Mailpile on your own server running a Mail Transfer Agent (MTA) like postfix or qmail. You would then access your mail remotely by connecting to your server via a web browser.
 
+<a name="Mail-in-a-box"></a>Mail-in-a-box
+-----------------------------------------------------------
+
+<a href="https://github.com/JoshData/mailinabox">github.com/JoshData/mailinabox</a>
+
+Mail-in-a-box helps people set up self-hosted email for linux hobbyists and email developers. It will install and configure the necessary Debian packages required to turn a machine running Ubuntu into a self-hosted email server. It provides a fairly straightforward, standard email server with IMAP, SMTP, greylisting, DKIM and SPF. It also includes a command line tool for adding and removing accounts.
+
+**Advantages:** Something quick for anyone with some linux skill who wants to experiment with email.
+
+**Limitations:** Setting up an email server is the easy part, maintaining the service over time is the tricky part. Without any automation recipes using something like Puppet, Chef, Salt, or CFEngine, mail-in-a-box is unlikely to be useful to anyone but the curious hobbyist.
+
+* Written in: Bash
+* Source code: https://github.com/JoshData/mailinabox
+* License: CC0 1.0 Universal
+
 <a name="kinko"></a>kinko
 -----------------------------------------------------------
 
@@ -503,7 +519,10 @@ It is important to understand that the way these new systems do not allow for tr
 <a name="i2pbote"></a>I2P-Bote
 -----------------------------------------------------------
 
-[I2P-Bote](http://i2pbote.i2p.us) is a messaging system on top of I2P. It has the appearance of a web mail interface but actually makes use of I2P's transaction data obfuscation capabilities embedded in its public-key based routing. Messages are directly stored into a DHT.
+[I2P-Bote](http://i2pbote.i2p.us) is a messaging system on top of I2P. It has the appearance of a web mail interface but actually runs on the local host of the owner and makes use of I2P's transaction data obfuscation capabilities embedded in its public-key based routing. Messages are directly stored into a DHT and kept for several months until the recipient picks them up.
+
+* Written in: Java
+* License: GPLv3
 
 <a name="pond"></a>Pond
 -----------------------------------------------------------
